@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./SpaceList.css"
 
 export const SpaceList = () => {
   const [spaces, changeSpaces] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8090/spaces?_expand=user&_expand=spacetypes")
+    fetch("http://localhost:8090/spaces?_expand=user&_expand=spaceType")
       .then((res) => res.json())
       .then((spacesFromAPI) => {
         changeSpaces(spacesFromAPI);
@@ -14,17 +16,13 @@ export const SpaceList = () => {
   return (
     <>
       {spaces.map((spaceObject) => {
-        return (
-          <div key={`user--${spaceObject.id}`}>
+        return ( 
+          
+          <div  className="spaceBoxes" key={`user--${spaceObject.id}`}>
+            <Link to={`/spacedetails/${spaceObject.id}`}><img src={spaceObject.coverPhotoLink} /></Link>
             <h3>{spaceObject.locationName}</h3>
-            <div>Space Created by {spaceObject.user.name}</div>
-            <div>Location: {spaceObject.location}</div>
-            <div>Space Type: {spaceObject.spaceTypeId.type}</div>
-            <div>SQFT: {spaceObject.squareFootage}</div>
-            <div>Levels: {spaceObject.numberOfLevels}</div>
-            <div>Number Of Scans: {spaceObject.numberOfScans}</div>
-            <div>3D Tour Link: {spaceObject.tourLink}</div>
           </div>
+          
         );
       })}
     </>

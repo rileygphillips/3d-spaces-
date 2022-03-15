@@ -1,0 +1,12 @@
+.sectionHeader {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.spaceSection {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+
+}

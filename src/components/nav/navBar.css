@@ -1,10 +1,18 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .navbar__item {
-    flex-basis: 20%;
-    list-style-type: none;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-basis: 5%;
+}
+
+.navbar__link {
+    color:aliceblue
 }
