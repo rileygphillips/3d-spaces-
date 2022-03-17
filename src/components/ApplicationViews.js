@@ -12,14 +12,9 @@ export const ApplicationViews = () => {
     return (
         <>
             <Route exact path="/userprofile/:userId(\d+)">
-                <div> <h2 className="sectionHeader">Your Profile</h2> </div>
-                <div className="userInfo">
-                    
-                    </div>
-                <Link to= "/createspace"><div className="createButton"> <button>Create New Space</button> </div></Link>
-                <div className="spaceSection">
+                
                 <UserProfile />
-                </div>
+                
             </Route>
 
             <Route exact path= "/createspace">

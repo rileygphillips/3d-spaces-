@@ -69,6 +69,7 @@ export const CreateSpace = () => {
                 }
             }
             >
+                <option value="0">Choose a Space Type</option>
             {spaceTypes.map(spaceType => <option key={spaceType.id} value={spaceType.id}>{spaceType.type}</option>)}
             </select>
             </div>

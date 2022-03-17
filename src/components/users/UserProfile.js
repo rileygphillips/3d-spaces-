@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./UserProfile.css"
 //Display logged in user//
 //Display logged in user info (location & numberOfSpaces)
@@ -10,9 +12,10 @@ export const UserProfile = () => {
     const [user, changeUser] = useState({spaces:[]});
    
     const history = useHistory()
+    const {userId} = useParams()
 
     const getSpaces = () => {
-        fetch(`http://localhost:8090/users/${localStorage.getItem("space_user")}?_embed=spaces`)
+        fetch(`http://localhost:8090/users/${userId}?_embed=spaces`)
         .then((res) => res.json())
         .then((usersFromAPI) => {
         changeUser(usersFromAPI);
@@ -29,13 +32,20 @@ const deleteSpace = (id) => {
 }
     return (
     <>
+        <div> <h2 className="sectionHeader">Your Profile</h2> </div>
+                <div className="userInfo">
+                    
+                    </div>
+                {localStorage.getItem("space_user") === userId ? <Link to= "/createspace"><div className="createButton"> <button>Create New Space</button> </div></Link> :null}
+                <div className="spaceSection"></div>
         {user.spaces.map((spaceObject) => {
-        return <div  className="spaceBoxes" key={`user--${spaceObject.id}`}>
+          return  <div  className="spaceBoxes" key={`user--${spaceObject.id}`}>
+             <Link to={`/spacedetails/${spaceObject.id}`}>
         <div> <img src={spaceObject.coverPhotoLink} /> </div>
-        <div> <h3>{spaceObject.locationName}</h3> </div> 
-        <button onClick={ () => history.push(`/editspace/${spaceObject.id}`)}><div>edit</div></button>
-        <button onClick={ () => {deleteSpace(spaceObject.id)} }> <div>delete</div> </button>
-        </div>
+        <div> <h3>{spaceObject.locationName}</h3> </div> </Link>
+        {localStorage.getItem("space_user") === userId ? <button onClick={ () => history.push(`/editspace/${spaceObject.id}`)}><div>edit</div></button> :null}
+        {localStorage.getItem("space_user") === userId ? <button onClick={ () => {deleteSpace(spaceObject.id)} }> <div>delete</div> </button> :null}
+        </div> 
         })}
     </>
     );
