@@ -8,5 +8,19 @@
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
+    margin-top: 50px;
 
+}
+
+.createButton {
+    display: flex;
+    margin-left: 10px;
+}
+
+.userInfo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+    
 }

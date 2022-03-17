@@ -18,7 +18,7 @@ export const Register = (props) => {
         existingUserCheck()
             .then((userExists) => {
                 if (!userExists) {
-                    fetch("http://localhost:8090/customers", {
+                    fetch("http://localhost:8090/users", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -29,7 +29,7 @@ export const Register = (props) => {
                         .then(createdUser => {
                             if (createdUser.hasOwnProperty("id")) {
                                 localStorage.setItem("space_user", createdUser.id)
-                                history.push("/")
+                                history.push(`/userprofile/${localStorage.getItem("space_user")}`)
                             }
                         })
                 }
@@ -54,7 +54,7 @@ export const Register = (props) => {
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register 3D SPACES</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Please Register</h1>
                 <fieldset>
                     <label htmlFor="name"> Full Name </label>
                     <input onChange={updateUser}

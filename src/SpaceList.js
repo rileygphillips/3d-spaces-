@@ -18,7 +18,7 @@ export const SpaceList = () => {
       {spaces.map((spaceObject) => {
         return ( 
           
-          <div  className="spaceBoxes" key={`user--${spaceObject.id}`}>
+          <div  className="spaceBoxes" key={`space--${spaceObject.id}`}>
             <Link to={`/spacedetails/${spaceObject.id}`}><img src={spaceObject.coverPhotoLink} /></Link>
             <h3>{spaceObject.locationName}</h3>
           </div>
