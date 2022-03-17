@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom"; 
 
 export const EditSpace = () => {
@@ -16,6 +17,7 @@ export const EditSpace = () => {
     
     const [spaceTypes, updateSpaceTypes] = useState([]) 
     const history = useHistory()
+    const {spaceId} = useParams()
 
     useEffect(() => {
         fetch(`http://localhost:8090/spaceTypes`)
@@ -24,8 +26,16 @@ export const EditSpace = () => {
             updateSpaceTypes(spacesFromAPI);
             });
         }, []);
-
-    const saveSpace = (event) => {
+    
+        useEffect(() => {
+            fetch(`http://localhost:8090/spaces/${spaceId}`)
+                .then((res) => res.json())
+                .then((spacesFromAPI) => {
+                updateSpace(spacesFromAPI);
+                });
+            }, []);
+    
+    const editSpace = (event) => {
         event.preventDefault()
         const newSpace = {
             userId: parseInt(localStorage.getItem("space_user")),
@@ -48,7 +58,7 @@ export const EditSpace = () => {
             body: JSON.stringify(newSpace)
         }
 
-        return fetch("http://localhost:8090/spaces", fetchOption)
+        return fetch(`http://localhost:8090/spaces/${spaceId}`, fetchOption)
         .then(() => {
             history.push(`/userprofile/${localStorage.getItem("space_user")}`)
         })
@@ -60,7 +70,7 @@ export const EditSpace = () => {
 
             <div>
             <div><label htmlFor="locationName">What Type Of Space is it?</label></div>
-            <select name="selectType" id="selectType"
+            <select name="selectType" id="selectType" value={space.spaceTypeId}
             onChange={
                 (evt) => {
                     const copy = {...space}
@@ -69,14 +79,14 @@ export const EditSpace = () => {
                 }
             }
             >
-            {spaceTypes.map(spaceType => <option value={spaceType.id}>{spaceType.type}</option>)}
+            {spaceTypes.map(spaceType => <option key={spaceType.id} value={spaceType.id}>{spaceType.type}</option>)}
             </select>
             </div>
 
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="locationName">Location Name:</label>
-                    <input
+                    <input value={space.locationName}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -95,7 +105,7 @@ export const EditSpace = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="location">Location:</label>
-                    <input
+                    <input value={space.location}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -114,7 +124,7 @@ export const EditSpace = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="squareFootage">Square Footage:</label>
-                    <input
+                    <input value={space.squareFootage}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -133,7 +143,7 @@ export const EditSpace = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="numberOfScans">Number Of Scans:</label>
-                    <input
+                    <input value={space.numberOfScans}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -152,7 +162,7 @@ export const EditSpace = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="numberOfLevels">Number Of Levels:</label>
-                    <input
+                    <input value={space.numberOfLevels}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -171,7 +181,7 @@ export const EditSpace = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="coverPhotoLink">Cover Photo:</label>
-                    <input
+                    <input value={space.coverPhotoLink}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -190,7 +200,7 @@ export const EditSpace = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="tourLink">3D Tour Link:</label>
-                    <input
+                    <input value={space.tourLink}
                     onChange={
                         (evt) => {
                             const copy = {...space}
@@ -206,7 +216,7 @@ export const EditSpace = () => {
                 </div>
             </fieldset>
             
-            <button className="btn btn-primary" onClick={saveSpace}>
+            <button className="btn btn-primary" onClick={editSpace}>
                 Update Space
             </button>
         </form>

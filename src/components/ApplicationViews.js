@@ -11,7 +11,7 @@ import { SpaceDetails } from "./SpaceDetails"
 export const ApplicationViews = () => {
     return (
         <>
-            <Route path="/userprofile/:userId(\d+)">
+            <Route exact path="/userprofile/:userId(\d+)">
                 <div> <h2 className="sectionHeader">Your Profile</h2> </div>
                 <div className="userInfo">
                     
@@ -22,21 +22,21 @@ export const ApplicationViews = () => {
                 </div>
             </Route>
 
-            <Route path= "/createspace">
+            <Route exact path= "/createspace">
                 <CreateSpace />
             </Route>
 
-            <Route path= "/editspace">
+            <Route exact path= "/editspace/:spaceId(\d+)">
                 
                 <EditSpace />
             </Route>
 
-            <Route path= "/spacedetails/:userId(\d+)">
+            <Route exact path= "/spacedetails/:spaceId(\d+)">
             <div> <h2 className="sectionHeader">Space Details</h2> </div>
                 <SpaceDetails />
             </Route>
 
-            <Route path="/publicspaces">
+            <Route exact path="/publicspaces">
                 <h2 className="sectionHeader">Public Spaces</h2>
                 <div className="spaceSection">
                 <SpaceList />

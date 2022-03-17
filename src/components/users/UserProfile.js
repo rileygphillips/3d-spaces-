@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./UserProfile.css"
 //Display logged in user//
 //Display logged in user info (location & numberOfSpaces)
@@ -8,22 +8,33 @@ import "./UserProfile.css"
 
 export const UserProfile = () => {
     const [user, changeUser] = useState({spaces:[]});
+   
+    const history = useHistory()
 
-    useEffect(() => {
-    fetch(`http://localhost:8090/users/${localStorage.getItem("space_user")}?_embed=spaces`)
+    const getSpaces = () => {
+        fetch(`http://localhost:8090/users/${localStorage.getItem("space_user")}?_embed=spaces`)
         .then((res) => res.json())
         .then((usersFromAPI) => {
         changeUser(usersFromAPI);
         });
-    }, []);
+    }
 
+    useEffect(() => {
+    getSpaces()
+    }, []);
+const deleteSpace = (id) => {
+    return fetch(`http://localhost:8090/spaces/${id}`, {
+        method: "DELETE"
+    }).then(getSpaces)
+}
     return (
     <>
         {user.spaces.map((spaceObject) => {
         return <div  className="spaceBoxes" key={`user--${spaceObject.id}`}>
         <div> <img src={spaceObject.coverPhotoLink} /> </div>
         <div> <h3>{spaceObject.locationName}</h3> </div> 
-        <Link to= "/editspace"> <div>edit</div> </Link>
+        <button onClick={ () => history.push(`/editspace/${spaceObject.id}`)}><div>edit</div></button>
+        <button onClick={ () => {deleteSpace(spaceObject.id)} }> <div>delete</div> </button>
         </div>
         })}
     </>

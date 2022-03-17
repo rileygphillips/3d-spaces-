@@ -69,7 +69,7 @@ export const CreateSpace = () => {
                 }
             }
             >
-            {spaceTypes.map(spaceType => <option value={spaceType.id}>{spaceType.type}</option>)}
+            {spaceTypes.map(spaceType => <option key={spaceType.id} value={spaceType.id}>{spaceType.type}</option>)}
             </select>
             </div>
 

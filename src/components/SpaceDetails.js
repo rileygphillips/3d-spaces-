@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const SpaceDetails = () => {
-  const [space, changeSpace] = useState([]);
+  const [space, getSpace] = useState([]);
+  const {spaceId} = useParams()
 
   useEffect(() => {
-    fetch("http://localhost:8090/spaces?_expand=user&_expand=spaceType")
+    fetch(`http://localhost:8090/spaces?_expand=user&_expand=spaceType`)
       .then((res) => res.json())
-      .then((spacesFromAPI) => {
-        changeSpace(spacesFromAPI);
+      .then((spaceFromAPI) => {
+        getSpace(spaceFromAPI);
       });
   }, []);
+  
 
   return (
     <>
       {space.map((spaceObject) => {
         return ( 
-          <div key={`user--${spaceObject.id}`}>
+          <div key={`space--${spaceObject.id}`} className="spaceBoxes">
+            <iframe width='853' height='480' src={`${spaceObject.tourLink}`} frameBorder='0' allowFullScreen allow='xr-spatial-tracking'></iframe>
             <h3>{spaceObject.locationName}</h3>
             <div>Space Created by {spaceObject.user.name}</div>
             <div>Location: {spaceObject.location}</div>
@@ -24,7 +27,7 @@ export const SpaceDetails = () => {
             <div>SQFT: {spaceObject.squareFootage}</div>
             <div>Levels: {spaceObject.numberOfLevels}</div>
             <div>Number Of Scans: {spaceObject.numberOfScans}</div>
-            <div><button>3D Tour Link</button></div>
+            
           </div>
         );
       })}
