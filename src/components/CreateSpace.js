@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
+import "../CreateSpace.css"
 
 export const CreateSpace = () => {
 
@@ -207,8 +208,8 @@ export const CreateSpace = () => {
                 </div>
             </fieldset>
             
-            <button className="btn btn-primary" onClick={saveSpace}>
-                Submit Space
+            <button className="submitButton" onClick={saveSpace}>
+            <span className="text">Submit Space </span>
             </button>
         </form>
     )

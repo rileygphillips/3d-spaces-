@@ -4,23 +4,23 @@ import "./navBar.css"
 
 export const NavBar = (props) => {
     return (
-        <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to={`/userprofile/${localStorage.getItem("space_user")}`}>Profile</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/publicspaces">Spaces</Link>
-            </li>
-            <li className="navbar__item">
+        <div className="navbar">
+            <div >
+                <Link className="navbar__link" to={`/userprofile/${localStorage.getItem("space_user")}`}><button className="navButton"><span className="text">Profile</span></button></Link>
+            </div>
+            <div >
+                <Link className="navbar__link" to="/publicspaces"><button className="navButton"><span className="text">Spaces</span></button></Link>
+            </div>
+            <div >
                 <Link className="navbar__link" to="#"
                 onClick={
                     () => {
                         localStorage.removeItem("space_user")
                     }
                 }>
-                    Logout
+                    <button className="navButton"><span className="text">Logout</span></button>
                 </Link>
-            </li>
-        </ul>
+            </div>
+        </div>
     )
 }

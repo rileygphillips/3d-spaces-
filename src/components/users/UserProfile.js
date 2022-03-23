@@ -22,9 +22,8 @@ export const UserProfile = () => {
         });
     }
 
-    useEffect(() => {
-    getSpaces()
-    }, []);
+    useEffect(() => {getSpaces()}, []);
+
 const deleteSpace = (id) => {
     return fetch(`http://localhost:8090/spaces/${id}`, {
         method: "DELETE"
@@ -32,21 +31,39 @@ const deleteSpace = (id) => {
 }
     return (
     <>
-        <div> <h2 className="sectionHeader">Your Profile</h2> </div>
-                <div className="userInfo">
-                    
-                    </div>
-                {localStorage.getItem("space_user") === userId ? <Link to= "/createspace"><div className="createButton"> <button>Create New Space</button> </div></Link> :null}
-                <div className="spaceSection"></div>
+        <div> <h1 className="sectionHeader">Your Profile</h1> </div>
+        <div className="buttonArea">
+        <div>{localStorage.getItem("space_user") === userId ? <Link key="createLink" className="createLink"  to= "/createspace"> <div> <button className="createButton"> <span className="text"> Create New Space </span> </button> </div> </Link> :null}</div>
+        </div>
+        <div className="userSpaceBoxes" >
         {user.spaces.map((spaceObject) => {
-          return  <div  className="spaceBoxes" key={`user--${spaceObject.id}`}>
-             <Link to={`/spacedetails/${spaceObject.id}`}>
-        <div> <img src={spaceObject.coverPhotoLink} /> </div>
-        <div> <h3>{spaceObject.locationName}</h3> </div> </Link>
-        {localStorage.getItem("space_user") === userId ? <button onClick={ () => history.push(`/editspace/${spaceObject.id}`)}><div>edit</div></button> :null}
-        {localStorage.getItem("space_user") === userId ? <button onClick={ () => {deleteSpace(spaceObject.id)} }> <div>delete</div> </button> :null}
-        </div> 
-        })}
+        return ( 
+            <>
+        <div className="spaceBoxes">
+        <Link className="spaceNameLink" key={spaceObject.id} to={`/spacedetails/${spaceObject.id}`}> 
+
+        <img src={spaceObject.coverPhotoLink} /> 
+
+        <h3>{spaceObject.locationName}</h3>
+
+        </Link>
+        
+        <div className="editAndDelete">
+        
+        {localStorage.getItem("space_user") === userId ? <div><button className="button-75" role="button" onClick={ () => history.push(`/editspace/${spaceObject.id}`)}> <span className="text">  edit </span> </button></div> :null}
+
+        {localStorage.getItem("space_user") === userId ? <div><button className="button-75" role="button" onClick={ () => {deleteSpace(spaceObject.id)} }> <span className="text"> delete </span> </button></div>  :null}
+
+        </div>
+
+        </div>
+
+        </>
+                    )
+                }
+            )
+        }
+        </div>
     </>
     );
 };

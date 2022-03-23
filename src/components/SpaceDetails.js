@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import "./SpaceDetails.css"
 
 export const SpaceDetails = () => {
     const [space, getSpace] = useState({});
@@ -19,8 +20,8 @@ return (
 
         <div key={`space--${space.id}`} className="spaceBoxes">
             {space.tourLink?.startsWith("http")? <iframe width='853' height='480' src={`${space.tourLink}`} frameBorder='0' allowFullScreen allow='xr-spatial-tracking'></iframe> :null}
-            <h3>{space.locationName}</h3>
-            <Link to={`/userprofile/${space.user?.id}`}><div>Space Created by {space.user?.name}</div></Link>
+            <h2>{space.locationName}</h2>
+            <Link className="userLink" to={`/userprofile/${space.user?.id}`}><h3>Space Created by {space.user?.name}</h3></Link>
             <div>Location: {space.location}</div>
             <div>Space Type: {space.spaceType?.type}</div>
             <div>SQFT: {space.squareFootage}</div>

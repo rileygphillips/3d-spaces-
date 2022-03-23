@@ -3,7 +3,6 @@ import { Route } from "react-router-dom"
 import { SpaceList } from "../SpaceList"
 import { UserProfile } from "./users/UserProfile"
 import "../ApplicationViews.css"
-import { Link } from "react-router-dom"
 import { CreateSpace } from "./CreateSpace"
 import { EditSpace } from "./EditSpace"
 import { SpaceDetails } from "./SpaceDetails"
@@ -32,7 +31,7 @@ export const ApplicationViews = () => {
             </Route>
 
             <Route exact path="/publicspaces">
-                <h2 className="sectionHeader">Public Spaces</h2>
+                <h1 className="sectionHeader">Public Spaces</h1>
                 <div className="spaceSection">
                 <SpaceList />
                 </div>
