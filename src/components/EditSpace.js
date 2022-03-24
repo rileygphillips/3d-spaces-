@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom"; 
+import "../CreateSpace.css"
 
 export const EditSpace = () => {
 
@@ -65,6 +66,8 @@ export const EditSpace = () => {
     }
 
     return (
+        <>
+        <div className="spaceFormSection">
         <form className="spaceForm">
             <h2 className="spaceForm__title">Create New Space</h2>
 
@@ -216,9 +219,12 @@ export const EditSpace = () => {
                 </div>
             </fieldset>
             
-            <button className="btn btn-primary" onClick={editSpace}>
-                Update Space
+            <button className="submitButton" onClick={editSpace}>
+            <span className="text"><h3>Update Space</h3> </span>
             </button>
         </form>
+        </div>
+        </>
     )
 }
+

@@ -56,9 +56,11 @@ export const CreateSpace = () => {
     }
 
     return (
+        <>
+        <div className="spaceFormSection">
         <form className="spaceForm">
             <h2 className="spaceForm__title">Create New Space</h2>
-
+            <div className="spaceFormArea">
             <div>
             <div><label htmlFor="locationName">What Type Of Space is it?</label></div>
             <select name="selectType" id="selectType"
@@ -209,8 +211,11 @@ export const CreateSpace = () => {
             </fieldset>
             
             <button className="submitButton" onClick={saveSpace}>
-            <span className="text">Submit Space </span>
+            <span className="text"><h3>Submit Space</h3> </span>
             </button>
+            </div>
         </form>
+        </div>
+</>
     )
 }

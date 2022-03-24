@@ -21,12 +21,14 @@ export const SpaceList = () => {
             
       {spaces.map((spaceObject) => {
         return ( 
+          <div className="block">
           <Link className="spaceLinks" key={spaceObject.id} to={`/spacedetails/${spaceObject.id}`}>
           <div  className="spaceBoxes" key={`space--${spaceObject.id}`}>
             <img src={spaceObject.coverPhotoLink} />
-            <h3>{spaceObject.locationName}</h3>
+            <h2>{spaceObject.locationName}</h2>
           </div>
           </Link>
+          </div>
           
         );
       })}

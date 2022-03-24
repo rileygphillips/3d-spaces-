@@ -1,3 +1,25 @@
+.spaceForm__title {
+    display: flex;
+    justify-content: center;
+}
+
+.spaceForm {
+    width: 600px;
+    
+}
+
+.spaceFormArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.spaceFormSection {
+    display: flex;
+    justify-content: center;
+}
+
 .submitButton {
     align-items: center;
     background-image: linear-gradient(135deg, #8CECDB 20%, #FF9494);
@@ -23,32 +45,32 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-  }
-  
-  .submitButton:active {
+}
+
+.submitButton:active {
     outline: 0;
-  }
-  
-  .submitButton:hover {
+}
+
+.submitButton:hover {
     outline: 0;
-  }
-  
-  .submitButton span {
+}
+
+.submitButton span {
     transition: all 500ms;
-  }
-  
-  .submitButton:hover span {
+}
+
+.submitButton:hover span {
     transform: scale(.9);
     opacity: .75;
-  }
-  
-  @media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 900px) {
     .submitButton {
-      font-size: 15px;
-      height: 50px;
+    font-size: 15px;
+    height: 50px;
     }
-  
-    .submitButton span {
-      line-height: 50px;
+
+.submitButton span {
+    line-height: 50px;
     }
-  }
+}

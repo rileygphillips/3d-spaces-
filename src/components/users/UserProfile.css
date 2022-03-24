@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    margin: 10px;
+    margin-top: 50px;
 }
 
 .spaceBoxes {
@@ -18,6 +18,8 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+
 
 .spaceNameLink {
     display: flex;
@@ -146,3 +148,8 @@
       line-height: 50px;
     }
   }
+
+.buttonArea {
+    display: flex;
+    justify-content: center;
+}

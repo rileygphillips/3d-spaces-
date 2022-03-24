@@ -26,7 +26,7 @@ export const ApplicationViews = () => {
             </Route>
 
             <Route exact path= "/spacedetails/:spaceId(\d+)">
-            <div> <h2 className="sectionHeader">Space Details</h2> </div>
+            <div> <h1 className="sectionHeader">Space Details</h1> </div>
                 <SpaceDetails />
             </Route>
 
