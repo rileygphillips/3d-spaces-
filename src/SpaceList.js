@@ -24,7 +24,11 @@ export const SpaceList = () => {
           <div className="block">
           <Link className="spaceLinks" key={spaceObject.id} to={`/spacedetails/${spaceObject.id}`}>
           <div  className="spaceBoxes" key={`space--${spaceObject.id}`}>
-            <img src={spaceObject.coverPhotoLink} />
+          <div class="box">
+
+          <img src={spaceObject.coverPhotoLink} width={525} height={320} /> 
+
+          </div>
             <h2>{spaceObject.locationName}</h2>
           </div>
           </Link>

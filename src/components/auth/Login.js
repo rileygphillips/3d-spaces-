@@ -34,7 +34,7 @@ export const Login = () => {
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
             </dialog>
 
-            <section>
+            <section className="loginContainer">
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Welcome!</h1>
                     <h2>Please sign in</h2>

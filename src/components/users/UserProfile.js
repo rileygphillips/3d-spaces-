@@ -45,7 +45,7 @@ const deleteSpace = (id) => {
 
         <Link className="spaceNameLink" key={spaceObject.id} to={`/spacedetails/${spaceObject.id}`}> 
 
-        <img src={spaceObject.coverPhotoLink} /> 
+        <img src={spaceObject.coverPhotoLink} width={525} height={320} /> 
 
         <h2>{spaceObject.locationName}</h2>
 
